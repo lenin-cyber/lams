@@ -286,7 +286,8 @@
       width: 60px;
       height: 2px;
       background: linear-gradient(90deg, var(--rose), var(--gold));
-      margin: 1.2rem 0 2.5rem;
+      margin: 1.2rem 0 1.5rem;
+      /* Reduced bottom margin from 2.5rem */
     }
 
     /* ABOUT */
@@ -423,7 +424,8 @@
 
     .pricing-header {
       max-width: 600px;
-      margin-bottom: 3.5rem;
+      margin-bottom: 1.5rem;
+      /* Reduced from 3.5rem */
     }
 
     .pricing-top-row {
@@ -431,7 +433,8 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 2.5rem;
-      margin-bottom: 3rem;
+      margin-bottom: 1.5rem;
+      /* Reduced from 3rem */
       flex-wrap: wrap;
     }
 
@@ -1665,6 +1668,36 @@
 
       .gallery-item {
         flex: 0 0 100% !important;
+      }
+
+      .pack-grid {
+        margin-top: 0 !important;
+      }
+
+      .pricing {
+        padding-top: 2rem !important;
+        /* Reduce section top padding */
+        padding-bottom: 2rem !important;
+      }
+
+      .pricing-top-row {
+        margin-bottom: 0 !important;
+      }
+
+      .pricing-header {
+        margin-bottom: 0 !important;
+      }
+
+      .pricing-header h2,
+      .pricing-header p,
+      .pricing-header .divider {
+        margin-bottom: 0.5rem !important;
+        margin-top: 0 !important;
+      }
+
+      .pack-grid {
+        margin-top: 1rem !important;
+        /* Minimal gap above cards */
       }
     }
 
