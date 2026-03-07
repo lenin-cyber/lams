@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="keywords" content="Makeup Artist, Bridal Makeup Sivakasi, Makeup Artist Sivakasi, LAMS Bridal Beauty Look, Amshadevi Makeup Artist">
   <meta name="description"
     content="LAMS Bridal Beauty Look — Sivakasi's trusted bridal makeup artist. Book HD bridal, engagement, reception, and party makeup services. Proprietor: Amshadevi." />
   <title>LAMS Bridal Beauty Look | Bridal Makeup Artist in Sivakasi</title>
@@ -1394,7 +1393,38 @@
       opacity: 1;
       transform: translateY(0);
     }
-  </style>
+  
+/* === Luxury Upgrades === */
+.shimmer-text{
+background:linear-gradient(90deg,#f0c060 0%,#fff4c0 20%,#b8860b 40%,#fff4c0 60%,#f0c060 80%);
+background-size:200% auto;
+color:transparent;
+-webkit-background-clip:text;
+background-clip:text;
+animation:shine 4s linear infinite;
+}
+
+@keyframes shine{
+0%{background-position:-200% center;}
+100%{background-position:200% center;}
+}
+
+/* Luxury hover for service cards */
+.service-card:hover{
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 18px 60px rgba(184,134,11,0.35);
+border:1px solid #f0c060;
+}
+
+/* Hero luxury background glow */
+.hero{
+background:
+radial-gradient(circle at 20% 20%,rgba(255,215,120,0.15),transparent 40%),
+radial-gradient(circle at 80% 70%,rgba(255,215,120,0.12),transparent 40%),
+linear-gradient(160deg,#0f0520 0%,#2a0a40 50%,#1a0630 100%);
+}
+
+</style>
 </head>
 
 <body>
@@ -1950,7 +1980,38 @@
       document.querySelector('nav').style.boxShadow = window.scrollY > 40 ? '0 4px 30px rgba(0,0,0,.5)' : 'none';
     });
   </script>
-</body>
 
+<!-- Luxury Lightbox -->
+<div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; z-index:9999;">
+  <img id="lightbox-img" style="max-width:90%; max-height:90%; border-radius:10px;">
+</div>
+
+<script>
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+anchor.addEventListener("click",function(e){
+e.preventDefault();
+document.querySelector(this.getAttribute("href")).scrollIntoView({behavior:"smooth"});
+});
+});
+
+// Lightbox gallery
+const images=document.querySelectorAll(".gallery-grid img");
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
+
+images.forEach(img=>{
+img.addEventListener("click",()=>{
+lightbox.style.display="flex";
+lightboxImg.src=img.src;
+});
+});
+
+lightbox.addEventListener("click",()=>{
+lightbox.style.display="none";
+});
+</script>
+
+</body>
 
 </html>
