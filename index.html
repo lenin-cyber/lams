@@ -1382,56 +1382,351 @@
       }
     }
 
-    /* SCROLL REVEAL */
+    /* SCROLL REVEAL & ANIMATIONS */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity .7s ease, transform .7s ease;
+      transform: translateY(40px);
+      transition: all .9s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all .9s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
     }
-  
-/* === Luxury Upgrades === */
-.shimmer-text{
-background:linear-gradient(90deg,#f0c060 0%,#fff4c0 20%,#b8860b 40%,#fff4c0 60%,#f0c060 80%);
-background-size:200% auto;
-color:transparent;
--webkit-background-clip:text;
-background-clip:text;
-animation:shine 4s linear infinite;
-}
 
-@keyframes shine{
-0%{background-position:-200% center;}
-100%{background-position:200% center;}
-}
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all .9s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
+    }
 
-/* Luxury hover for service cards */
-.service-card:hover{
-transform:translateY(-8px) scale(1.02);
-box-shadow:0 18px 60px rgba(184,134,11,0.35);
-border:1px solid #f0c060;
-}
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all .8s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
+    }
 
-/* Hero luxury background glow */
-.hero{
-background:
-radial-gradient(circle at 20% 20%,rgba(255,215,120,0.15),transparent 40%),
-radial-gradient(circle at 80% 70%,rgba(255,215,120,0.12),transparent 40%),
-linear-gradient(160deg,#0f0520 0%,#2a0a40 50%,#1a0630 100%);
-}
+    .visible {
+      opacity: 1 !important;
+      transform: translate(0, 0) scale(1) !important;
+    }
 
-</style>
+    /* Staggering for Grids */
+    .stagger-container .reveal,
+    .stagger-container .reveal-left,
+    .stagger-container .reveal-right,
+    .stagger-container .reveal-scale {
+      transition-delay: calc(var(--delay, 0) * 0.1s);
+    }
+
+    /* === Luxury Upgrades === */
+    .shimmer-text {
+      background: linear-gradient(90deg, #f0c060 0%, #fff4c0 20%, #b8860b 40%, #fff4c0 60%, #f0c060 80%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shine 4s linear infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        background-position: -200% center;
+      }
+
+      100% {
+        background-position: 200% center;
+      }
+    }
+
+    /* Luxury hover for service cards */
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 18px 60px rgba(184, 134, 11, 0.35);
+      border: 1px solid #f0c060;
+    }
+
+    /* Hero luxury background glow */
+    .hero {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 215, 120, 0.15), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 215, 120, 0.12), transparent 40%),
+        linear-gradient(160deg, #0f0520 0%, #2a0a40 50%, #1a0630 100%);
+    }
+
+
+    /* ===== Page Loader ===== */
+    #page-loader {
+      position: fixed;
+      inset: 0;
+      background: #0f0520;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+
+    #page-loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-ring {
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top-color: #f0c060;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ===== Hero text animation ===== */
+    .hero h1 {
+      animation: heroFade 1.2s ease both;
+    }
+
+    .hero p {
+      animation: heroFade 1.6s ease both;
+    }
+
+    @keyframes heroFade {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+
+    /* ===== Floating Gold Particles ===== */
+    #particles-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ===== Mobile Menu ===== */
+    .mobile-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @media(max-width:768px) {
+      .mobile-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: #1a0630;
+        flex-direction: column;
+        width: 220px;
+        padding: 1rem;
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+    }
+
+    /* ===== Cursor Glow ===== */
+    .cursor-glow {
+      position: fixed;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 215, 120, 0.35), transparent 70%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9998;
+      mix-blend-mode: screen;
+    }
+
+
+    /* ===== Fullscreen Gallery Slider ===== */
+    #gallery-slider {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 5000;
+      backdrop-filter: blur(10px);
+    }
+
+    #gallery-slider img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Animations */
+    .slide-in-right {
+      animation: slideInRight 0.5s ease both;
+    }
+
+    .slide-in-left {
+      animation: slideInLeft 0.5s ease both;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease both;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .slider-controls {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .slider-controls button {
+      font-size: 2.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      cursor: pointer;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .slider-controls button:hover {
+      background: var(--rose);
+      border-color: var(--rose);
+      transform: scale(1.1);
+    }
+
+    .slider-close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .slider-close:hover {
+      background: #ff4d4d;
+      transform: rotate(90deg);
+    }
+
+    /* ===== Google Reviews Section ===== */
+    .google-reviews {
+      background: #faf6ff;
+      padding: 4rem 5%;
+      text-align: center;
+    }
+
+    .review-badge {
+      font-size: 2rem;
+      color: #b8860b;
+      margin-bottom: 1rem;
+    }
+  </style>
+
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="LAMS Bridal Beauty Look">
+  <meta property="og:title" content="LAMS Bridal Beauty Look | Bridal Makeup Artist in Sivakasi">
+  <meta property="og:description"
+    content="Premium bridal makeup services in Sivakasi by Amshadevi. Bridal, engagement, reception and party makeup.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/bridal_hero_1772880956583.png">
+  <meta name="twitter:card" content="summary_large_image">
+
 </head>
 
 <body>
+  <div class='cursor-glow'></div>
+
+  <canvas id="particles-bg"></canvas>
+
+
+  <div id="page-loader">
+    <div class="loader-ring"></div>
+  </div>
+
 
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">LAMS Bridal Beauty Look</a>
+    <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
@@ -1445,20 +1740,19 @@ linear-gradient(160deg,#0f0520 0%,#2a0a40 50%,#1a0630 100%);
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-img-wrapper">
-      <img
-        src="images/bridal_hero_1772880956583.png"
-        alt="Bridal Makeup" />
+      <img id="hero-parallax" src="images/bridal_hero_1772880956583.png" alt="Bridal Makeup" />
     </div>
     <div class="hero-content">
-      <span class="hero-badge">✦ Sivakasi's Premier Bridal Studio</span>
-      <h1>Bridal Makeup<br />That Makes You <span>Unforgettable</span></h1>
-      <p>From timeless traditional looks to modern HD glam — LAMS Bridal Beauty Look crafts every bridal look with
+      <span class="hero-badge reveal">✦ Sivakasi's Premier Bridal Studio</span>
+      <h1 class="reveal">Bridal Makeup<br />That Makes You <span>Unforgettable</span></h1>
+      <p class="reveal">From timeless traditional looks to modern HD glam — LAMS Bridal Beauty Look crafts every bridal
+        look with
         precision, passion, and luxury-grade products.</p>
-      <div class="hero-btns">
+      <div class="hero-btns reveal">
         <a href="#contact" class="btn-primary">Book Your Trial</a>
         <a href="#pricing" class="btn-outline">View Packages</a>
       </div>
-      <div class="hero-stats">
+      <div class="hero-stats reveal">
         <div class="stat-item">
           <div class="stat-num">100+</div>
           <div class="stat-label">Brides Beautified</div>
@@ -1477,12 +1771,10 @@ linear-gradient(160deg,#0f0520 0%,#2a0a40 50%,#1a0630 100%);
 
   <!-- ABOUT -->
   <section class="about" id="about">
-    <div class="about-img reveal">
-      <img
-        src="images/makeup_artist_portrait_1772881024808.png"
-        alt="Amshadevi — Lead Artist" />
+    <div class="about-img reveal-left">
+      <img src="images/makeup_artist_portrait_1772881024808.png" alt="Amshadevi — Lead Artist" />
     </div>
-    <div class="reveal">
+    <div class="reveal-right">
       <p class="section-label">About the Artist</p>
       <h2 class="section-title">Meet Amshadevi —<br />Your Dream Maker</h2>
       <div class="divider"></div>
@@ -1508,56 +1800,44 @@ linear-gradient(160deg,#0f0520 0%,#2a0a40 50%,#1a0630 100%);
       <p class="section-sub" style="margin:0 auto">Every look is crafted with premium products, tailored to your skin
         tone and occasion.</p>
     </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <img
-          src="images/makeup_service3_1772881004256.png"
-          alt="Bridal Makeup" />
+    <div class="services-grid stagger-container">
+      <div class="service-card reveal-scale" style="--delay: 1">
+        <img src="images/makeup_service3_1772881004256.png" alt="Bridal Makeup" />
         <div class="service-body">
           <h3>Bridal Makeup</h3>
           <p>Long-lasting HD or airbrush bridal look with skin prep, hair styling, and saree draping support.</p>
         </div>
       </div>
-      <div class="service-card reveal">
-        <img
-          src="images/groom_makeup_1772887025480.png"
-          alt="Groom Makeup" />
+      <div class="service-card reveal-scale" style="--delay: 2">
+        <img src="images/groom_makeup_1772887025480.png" alt="Groom Makeup" />
         <div class="service-body">
           <h3>Groom Makeup</h3>
           <p>Subtle, skin-perfecting grooming and makeup for the groom — looking sharp, fresh, and camera-ready.</p>
         </div>
       </div>
-      <div class="service-card reveal">
-        <img
-          src="images/engagement_makeup_1772881041430.png"
-          alt="Engagement Makeup" />
+      <div class="service-card reveal-scale" style="--delay: 3">
+        <img src="images/engagement_makeup_1772881041430.png" alt="Engagement Makeup" />
         <div class="service-body">
           <h3>Engagement Makeup</h3>
           <p>Soft glam or bold looks for your special engagement ceremony. Perfect for photographs and videos.</p>
         </div>
       </div>
-      <div class="service-card reveal">
-        <img
-          src="images/makeup_service1_1772880975972.png"
-          alt="Reception Makeup" />
+      <div class="service-card reveal-scale" style="--delay: 4">
+        <img src="images/makeup_service1_1772880975972.png" alt="Reception Makeup" />
         <div class="service-body">
           <h3>Reception Makeup</h3>
           <p>Glamorous reception looks with dramatic eyes, contouring, and setting spray for all-night perfection.</p>
         </div>
       </div>
-      <div class="service-card reveal">
-        <img
-          src="images/makeup_service2_1772880990476.png"
-          alt="Party Makeup" />
+      <div class="service-card reveal-scale" style="--delay: 5">
+        <img src="images/makeup_service2_1772880990476.png" alt="Party Makeup" />
         <div class="service-body">
           <h3>Party &amp; Event Makeup</h3>
           <p>Turn heads at any party, cocktail night, or cultural event with customised stunning looks.</p>
         </div>
       </div>
-      <div class="service-card reveal">
-        <img
-          src="images/saree_draping_1772887243659.png"
-          alt="Saree Draping" />
+      <div class="service-card reveal-scale" style="--delay: 6">
+        <img src="images/saree_draping_1772887243659.png" alt="Saree Draping" />
         <div class="service-body">
           <h3>Saree Draping / Pre-Plating</h3>
           <p>Expert saree draping and pre-plating for brides and family — neat, elegant, and perfectly fitted for every
@@ -1668,24 +1948,12 @@ linear-gradient(160deg,#0f0520 0%,#2a0a40 50%,#1a0630 100%);
       <div class="divider"></div>
     </div>
     <div class="gallery-grid reveal">
-      <img
-        src="images/bridal_hero_1772880956583.png"
-        alt="Bridal Look 1" />
-      <img
-        src="images/makeup_service3_1772881004256.png"
-        alt="Bridal Look 2" />
-      <img
-        src="images/engagement_makeup_1772881041430.png"
-        alt="Engagement Look" />
-      <img
-        src="images/makeup_service1_1772880975972.png"
-        alt="Eye Makeup" />
-      <img
-        src="images/makeup_service2_1772880990476.png"
-        alt="Makeup Application" />
-      <img
-        src="images/makeup_artist_portrait_1772881024808.png"
-        alt="Artist Portrait" />
+      <img src="images/bridal_hero_1772880956583.png" alt="Bridal Look 1" />
+      <img src="images/makeup_service3_1772881004256.png" alt="Bridal Look 2" />
+      <img src="images/engagement_makeup_1772881041430.png" alt="Engagement Look" />
+      <img src="images/makeup_service1_1772880975972.png" alt="Eye Makeup" />
+      <img src="images/makeup_service2_1772880990476.png" alt="Makeup Application" />
+      <img src="images/makeup_artist_portrait_1772881024808.png" alt="Artist Portrait" />
     </div>
   </section>
 
@@ -1927,6 +2195,23 @@ linear-gradient(160deg,#0f0520 0%,#2a0a40 50%,#1a0630 100%);
   </section>
 
   <!-- FOOTER -->
+
+  <section class="google-reviews">
+    <h2>⭐ Google Reviews</h2>
+    <p class="review-badge">Rated 5.0 by our happy brides</p>
+    <p>See what brides are saying about LAMS Bridal Beauty Look on Google.</p>
+    <a href="https://share.google/MndAWRMmfUpT8WvvW" target="_blank" style="
+display:inline-block;
+margin-top:20px;
+padding:12px 28px;
+background:#b8860b;
+color:white;
+border-radius:30px;
+text-decoration:none;
+font-weight:600;
+">View All Reviews</a>
+  </section>
+
   <footer>
     <div class="footer-logo">LAMS Bridal Beauty Look</div>
     <p>Sivakasi's trusted bridal makeup destination — crafting timeless beauty, one bride at a time.<br />
@@ -1952,65 +2237,231 @@ linear-gradient(160deg,#0f0520 0%,#2a0a40 50%,#1a0630 100%);
   <a href="https://wa.me/918220966833" class="whatsapp-btn" title="Chat on WhatsApp" target="_blank">💬</a>
 
   <script>
-    const reveals = document.querySelectorAll('.reveal');
+    /* Intersection Observer for Multi-Directional Reveal */
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-    }, { threshold: 0.1 });
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
     reveals.forEach(el => observer.observe(el));
 
-    function toggleFaq(btn) {
-      const item = btn.parentElement;
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    }
-
-    function submitForm() {
-      const name = document.getElementById('firstName').value;
-      const phone = document.getElementById('phone').value;
-      const service = document.getElementById('service').value;
-      if (!name || !phone || !service) {
-        alert('Please fill in your name, phone number, and service selection.');
-        return;
-      }
-      alert(`✨ Thank you, ${name}! Your booking request for "${service}" has been received. Amshadevi will contact you at ${phone} within 24 hours.`);
-    }
-
+    /* Parallax Hero Effect */
     window.addEventListener('scroll', () => {
-      document.querySelector('nav').style.boxShadow = window.scrollY > 40 ? '0 4px 30px rgba(0,0,0,.5)' : 'none';
+      const scrollY = window.scrollY;
+      const heroImg = document.getElementById('hero-parallax');
+      if (heroImg) {
+        heroImg.style.transform = `translateY(${scrollY * 0.4}px)`;
+      }
+
+      // Nav shadow on scroll
+      document.querySelector('nav').style.boxShadow = scrollY > 40 ? '0 4px 30px rgba(0,0,0,.5)' : 'none';
     });
   </script>
 
-<!-- Luxury Lightbox -->
-<div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; z-index:9999;">
-  <img id="lightbox-img" style="max-width:90%; max-height:90%; border-radius:10px;">
-</div>
+  <!-- Slider component is consolidated into #gallery-slider -->
 
-<script>
-// Smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-anchor.addEventListener("click",function(e){
-e.preventDefault();
-document.querySelector(this.getAttribute("href")).scrollIntoView({behavior:"smooth"});
-});
-});
+  <!-- Redundant lightbox script removed to use gallery slider instead -->
 
-// Lightbox gallery
-const images=document.querySelectorAll(".gallery-grid img");
-const lightbox=document.getElementById("lightbox");
-const lightboxImg=document.getElementById("lightbox-img");
 
-images.forEach(img=>{
-img.addEventListener("click",()=>{
-lightbox.style.display="flex";
-lightboxImg.src=img.src;
-});
-});
+  <!-- Redundant lightbox HTML removed -->
 
-lightbox.addEventListener("click",()=>{
-lightbox.style.display="none";
-});
-</script>
+
+
+  <script>
+    /* ===== SAFE LOADER FIX ===== */
+    function hideLoader() {
+      const loader = document.getElementById("page-loader");
+      if (loader) { loader.classList.add("hide"); }
+    }
+    window.addEventListener("load", hideLoader);
+    window.addEventListener("DOMContentLoaded", hideLoader);
+    setTimeout(hideLoader, 2000);
+
+    /* ===== SAFE PARTICLES ===== */
+    (function () {
+      const canvas = document.getElementById("particles-bg");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      resize(); window.addEventListener("resize", resize);
+      const particles = [];
+      for (let i = 0; i < 40; i++) {
+        particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 2 + 1, v: Math.random() * 0.4 + 0.1 });
+      }
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(255,215,120,0.6)"; ctx.fill();
+          p.y -= p.v;
+          if (p.y < 0) { p.y = canvas.height; p.x = Math.random() * canvas.width; }
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+  </script>
+
+
+
+  <script>
+
+    /* ===== Mobile Menu Toggle ===== */
+    function toggleMenu() {
+      const nav = document.querySelector(".nav-links");
+      nav.classList.toggle("open");
+    }
+
+    /* ===== Cursor Glow ===== */
+    const glow = document.querySelector(".cursor-glow");
+    document.addEventListener("mousemove", (e) => {
+      glow.style.left = e.clientX + "px";
+      glow.style.top = e.clientY + "px";
+    });
+
+    /* ===== Floating Particles ===== */
+    const canvas = document.getElementById("particles-bg");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    const particles = [];
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        v: Math.random() * 0.4 + 0.1
+      });
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,215,120,0.6)";
+        ctx.fill();
+
+        p.y -= p.v;
+        if (p.y < 0) {
+          p.y = canvas.height;
+          p.x = Math.random() * canvas.width;
+        }
+      });
+
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+  </script>
+
+
+  <div id="gallery-slider">
+    <span class="slider-close">✕</span>
+    <img id="slider-img" src="" alt="Gallery Preview">
+    <div class="slider-controls">
+      <button id="prev-slide">⟨</button>
+      <button id="next-slide">⟩</button>
+    </div>
+  </div>
+
+
+  <script>
+    /* ===== Consolidated Gallery Slider JS ===== */
+    (function () {
+      const slider = document.getElementById("gallery-slider");
+      const sliderImg = document.getElementById("slider-img");
+      const galleryImages = Array.from(document.querySelectorAll(".gallery-grid img"));
+      const prevBtn = document.getElementById("prev-slide");
+      const nextBtn = document.getElementById("next-slide");
+      const closeBtn = document.querySelector(".slider-close");
+      let currentIdx = 0;
+
+      function showSlide(direction = 'fade') {
+        // Remove old animation classes
+        sliderImg.classList.remove('slide-in-right', 'slide-in-left', 'fade-in');
+
+        // Force reflow
+        void sliderImg.offsetWidth;
+
+        // Set new image source
+        sliderImg.src = galleryImages[currentIdx].src;
+
+        // Add appropriate animation class
+        if (direction === 'next') sliderImg.classList.add('slide-in-right');
+        else if (direction === 'prev') sliderImg.classList.add('slide-in-left');
+        else sliderImg.classList.add('fade-in');
+      }
+
+      galleryImages.forEach((img, i) => {
+        img.addEventListener("click", () => {
+          currentIdx = i;
+          slider.style.display = "flex";
+          showSlide('fade');
+          document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+      });
+
+      prevBtn.onclick = (e) => {
+        e.stopPropagation();
+        currentIdx = (currentIdx - 1 + galleryImages.length) % galleryImages.length;
+        showSlide('prev');
+      };
+
+      nextBtn.onclick = (e) => {
+        e.stopPropagation();
+        currentIdx = (currentIdx + 1) % galleryImages.length;
+        showSlide('next');
+      };
+
+      closeBtn.onclick = () => {
+        slider.style.display = "none";
+        document.body.style.overflow = ''; // Restore scrolling
+      };
+
+      // Close on backdrop click
+      slider.onclick = (e) => {
+        if (e.target === slider) {
+          slider.style.display = "none";
+          document.body.style.overflow = '';
+        }
+      };
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (slider.style.display === "flex") {
+          if (e.key === "ArrowRight") nextBtn.click();
+          if (e.key === "ArrowLeft") prevBtn.click();
+          if (e.key === "Escape") closeBtn.click();
+        }
+      });
+
+      // Smooth scroll Fix for other anchors
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+          const target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+    })();
+  </script>
 
 </body>
 
