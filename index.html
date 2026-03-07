@@ -7,12 +7,6 @@
   <meta name="description"
     content="LAMS Bridal Beauty Look — Sivakasi's trusted bridal makeup artist. Book HD bridal, engagement, reception, and party makeup services. Proprietor: Amshadevi." />
   <title>LAMS Bridal Beauty Look | Bridal Makeup Artist in Sivakasi</title>
-
-<!-- Performance Optimizations -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
@@ -1400,166 +1394,40 @@
       transform: translateY(0);
     }
   
-/* ===== Luxury Upgrades ===== */
-
-/* Gold shimmer */
+/* === Luxury Upgrades === */
 .shimmer-text{
-background:linear-gradient(90deg,#f0c060,#fff4c0,#b8860b,#fff4c0,#f0c060);
+background:linear-gradient(90deg,#f0c060 0%,#fff4c0 20%,#b8860b 40%,#fff4c0 60%,#f0c060 80%);
 background-size:200% auto;
 color:transparent;
 -webkit-background-clip:text;
 background-clip:text;
 animation:shine 4s linear infinite;
 }
+
 @keyframes shine{
 0%{background-position:-200% center;}
 100%{background-position:200% center;}
 }
 
-/* Cursor glow */
-.cursor-glow{
-position:fixed;
-width:220px;
-height:220px;
-border-radius:50%;
-pointer-events:none;
-background:radial-gradient(circle,rgba(184,134,11,.35) 0%,rgba(184,134,11,.15) 40%,transparent 70%);
-transform:translate(-50%,-50%);
-z-index:9999;
-mix-blend-mode:screen;
+/* Luxury hover for service cards */
+.service-card:hover{
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 18px 60px rgba(184,134,11,0.35);
+border:1px solid #f0c060;
 }
 
-/* Floating particles */
-.particles{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-}
-.particles span{
-position:absolute;
-width:6px;
-height:6px;
-background:#f0c060;
-border-radius:50%;
-opacity:.7;
-animation:floatParticle 10s linear infinite;
-}
-@keyframes floatParticle{
-0%{transform:translateY(100vh) scale(0);opacity:0;}
-50%{opacity:1;}
-100%{transform:translateY(-10vh) scale(1);opacity:0;}
-}
-
-/* Luxury loader */
-#lux-loader{
-position:fixed;
-inset:0;
-background:#12061c;
-display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-z-index:99999;
-}
-.loader-logo{
-font-family:'Cormorant Garamond',serif;
-font-size:3rem;
-background:linear-gradient(90deg,#f0c060,#fff4c0,#b8860b);
--webkit-background-clip:text;
-color:transparent;
-animation:shine 3s linear infinite;
-}
-.loader-sub{
-margin-top:10px;
-color:#caa85a;
-letter-spacing:3px;
-font-size:.8rem;
-}
-
-
-/* ===== Alignment Fixes ===== */
+/* Hero luxury background glow */
 .hero{
-display:flex;
-align-items:center;
-justify-content:space-between;
-flex-wrap:wrap;
-}
-
-.hero-content{
-z-index:2;
-max-width:560px;
-}
-
-.hero-img-wrapper{
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.gallery-grid{
-column-gap:1.2rem;
-}
-
-.services-grid,
-.pack-grid{
-align-items:stretch;
-}
-
-.service-card,
-.pack-card{
-height:100%;
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-}
-
-.contact{
-align-items:start;
-}
-
-@media(max-width:768px){
-.hero{
-flex-direction:column;
-text-align:center;
-}
-
-.hero-img-wrapper{
-width:100%;
-margin-top:2rem;
-}
-
-.hero-content{
-max-width:100%;
-}
-}
-
-
-/* Cinematic image reveal */
-.hero-img-wrapper img{
-clip-path:circle(0% at 50% 50%);
-animation:revealHero 2.5s ease forwards;
-}
-
-@keyframes revealHero{
-to{
-clip-path:circle(75% at 50% 50%);
-}
+background:
+radial-gradient(circle at 20% 20%,rgba(255,215,120,0.15),transparent 40%),
+radial-gradient(circle at 80% 70%,rgba(255,215,120,0.12),transparent 40%),
+linear-gradient(160deg,#0f0520 0%,#2a0a40 50%,#1a0630 100%);
 }
 
 </style>
 </head>
 
 <body>
-
-<div id="lux-loader">
-<div class="loader-logo">LAMS</div>
-<div class="loader-sub">BRIDAL BEAUTY LOOK</div>
-</div>
-<div class="cursor-glow"></div>
-
 
   <!-- NAV -->
   <nav>
@@ -1575,16 +1443,10 @@ clip-path:circle(75% at 50% 50%);
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
-<div class="particles">
-<span style="left:10%;animation-delay:0s"></span>
-<span style="left:30%;animation-delay:2s"></span>
-<span style="left:60%;animation-delay:4s"></span>
-<span style="left:80%;animation-delay:1s"></span>
-</div> id="home">
+  <section class="hero" id="home">
     <div class="hero-img-wrapper">
       <img
-        src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\bridal_hero_1772880956583.png"
+        src="images/bridal_hero_1772880956583.png"
         alt="Bridal Makeup" />
     </div>
     <div class="hero-content">
@@ -1617,7 +1479,7 @@ clip-path:circle(75% at 50% 50%);
   <section class="about" id="about">
     <div class="about-img reveal">
       <img
-        src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\makeup_artist_portrait_1772881024808.png"
+        src="images/makeup_artist_portrait_1772881024808.png"
         alt="Amshadevi — Lead Artist" />
     </div>
     <div class="reveal">
@@ -1649,7 +1511,7 @@ clip-path:circle(75% at 50% 50%);
     <div class="services-grid">
       <div class="service-card reveal">
         <img
-          src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\makeup_service3_1772881004256.png"
+          src="images/makeup_service3_1772881004256.png"
           alt="Bridal Makeup" />
         <div class="service-body">
           <h3>Bridal Makeup</h3>
@@ -1658,7 +1520,7 @@ clip-path:circle(75% at 50% 50%);
       </div>
       <div class="service-card reveal">
         <img
-          src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\groom_makeup_1772887025480.png"
+          src="images/groom_makeup_1772887025480.png"
           alt="Groom Makeup" />
         <div class="service-body">
           <h3>Groom Makeup</h3>
@@ -1667,7 +1529,7 @@ clip-path:circle(75% at 50% 50%);
       </div>
       <div class="service-card reveal">
         <img
-          src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\engagement_makeup_1772881041430.png"
+          src="images/engagement_makeup_1772881041430.png"
           alt="Engagement Makeup" />
         <div class="service-body">
           <h3>Engagement Makeup</h3>
@@ -1676,7 +1538,7 @@ clip-path:circle(75% at 50% 50%);
       </div>
       <div class="service-card reveal">
         <img
-          src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\makeup_service1_1772880975972.png"
+          src="images/makeup_service1_1772880975972.png"
           alt="Reception Makeup" />
         <div class="service-body">
           <h3>Reception Makeup</h3>
@@ -1685,7 +1547,7 @@ clip-path:circle(75% at 50% 50%);
       </div>
       <div class="service-card reveal">
         <img
-          src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\makeup_service2_1772880990476.png"
+          src="images/makeup_service2_1772880990476.png"
           alt="Party Makeup" />
         <div class="service-body">
           <h3>Party &amp; Event Makeup</h3>
@@ -1694,7 +1556,7 @@ clip-path:circle(75% at 50% 50%);
       </div>
       <div class="service-card reveal">
         <img
-          src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\saree_draping_1772887243659.png"
+          src="images/saree_draping_1772887243659.png"
           alt="Saree Draping" />
         <div class="service-body">
           <h3>Saree Draping / Pre-Plating</h3>
@@ -1807,22 +1669,22 @@ clip-path:circle(75% at 50% 50%);
     </div>
     <div class="gallery-grid reveal">
       <img
-        src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\bridal_hero_1772880956583.png"
+        src="images/bridal_hero_1772880956583.png"
         alt="Bridal Look 1" />
       <img
-        src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\makeup_service3_1772881004256.png"
+        src="images/makeup_service3_1772881004256.png"
         alt="Bridal Look 2" />
       <img
-        src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\engagement_makeup_1772881041430.png"
+        src="images/engagement_makeup_1772881041430.png"
         alt="Engagement Look" />
       <img
-        src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\makeup_service1_1772880975972.png"
+        src="images/makeup_service1_1772880975972.png"
         alt="Eye Makeup" />
       <img
-        src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\makeup_service2_1772880990476.png"
+        src="images/makeup_service2_1772880990476.png"
         alt="Makeup Application" />
       <img
-        src="C:\Users\Lenin M\.gemini\antigravity\brain\2de8c682-7919-41c8-b39b-4ef9ca29929c\makeup_artist_portrait_1772881024808.png"
+        src="images/makeup_artist_portrait_1772881024808.png"
         alt="Artist Portrait" />
     </div>
   </section>
@@ -2119,49 +1981,35 @@ clip-path:circle(75% at 50% 50%);
     });
   </script>
 
-<script defer>
-/* Loader */
-window.addEventListener("load",function(){
-const loader=document.getElementById("lux-loader");
-setTimeout(()=>{
-loader.style.opacity="0";
-loader.style.transition="opacity .8s";
-setTimeout(()=>loader.remove(),800);
-},1200);
+<!-- Luxury Lightbox -->
+<div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; z-index:9999;">
+  <img id="lightbox-img" style="max-width:90%; max-height:90%; border-radius:10px;">
+</div>
+
+<script>
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+anchor.addEventListener("click",function(e){
+e.preventDefault();
+document.querySelector(this.getAttribute("href")).scrollIntoView({behavior:"smooth"});
+});
 });
 
-/* Cursor glow */
-const glow=document.querySelector(".cursor-glow");
-document.addEventListener("mousemove",(e)=>{
-glow.style.left=e.clientX+"px";
-glow.style.top=e.clientY+"px";
-});
+// Lightbox gallery
+const images=document.querySelectorAll(".gallery-grid img");
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
 
-/* Parallax hero */
-const heroImage=document.querySelector(".hero-img-wrapper img");
-if(heroImage){
-window.addEventListener("scroll",()=>{
-const s=window.scrollY;
-heroImage.style.transform="translateY("+s*0.25+"px) scale("+(1+s*0.0003)+")";
-});
-}
-
-/* Lightbox gallery */
-const imgs=document.querySelectorAll(".gallery-grid img");
-const lightbox=document.createElement("div");
-lightbox.style.cssText="position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:9999";
-const lbImg=document.createElement("img");
-lbImg.style.cssText="max-width:90%;max-height:90%;border-radius:10px";
-lightbox.appendChild(lbImg);
-document.body.appendChild(lightbox);
-
-imgs.forEach(img=>{
+images.forEach(img=>{
 img.addEventListener("click",()=>{
-lbImg.src=img.src;
 lightbox.style.display="flex";
+lightboxImg.src=img.src;
 });
 });
-lightbox.addEventListener("click",()=>lightbox.style.display="none");
+
+lightbox.addEventListener("click",()=>{
+lightbox.style.display="none";
+});
 </script>
 
 </body>
