@@ -32,15 +32,18 @@
       --white: #ffffff;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html,
+    body {
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+      background: #0f0520;
+      /* Dark background to prevent white gaps */
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--cream);
       color: var(--text);
-      overflow-x: hidden;
     }
 
     /* NAV */
@@ -105,6 +108,10 @@
     .nav-cta:hover {
       opacity: .88;
       transform: translateY(-1px);
+    }
+
+    .mobile-only {
+      display: none;
     }
 
     /* HERO */
@@ -1383,78 +1390,7 @@
       }
     }
 
-    /* MOBILE (max-width: 768px) */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        /* Mobile menu could be added here later */
-      }
-
-      section {
-        padding: 4rem 5%;
-      }
-
-      .section-title {
-        font-size: 2.2rem;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.5rem, 8vw, 3.2rem);
-      }
-
-      .hero {
-        margin-top: 0 !important;
-      }
-
-      .hero-img-wrapper {
-        height: 350px;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-        max-width: 500px;
-        margin-inline: auto;
-      }
-
-      .pack-grid {
-        grid-template-columns: 1fr;
-        max-width: 450px;
-        margin-inline: auto;
-      }
-
-      .pack-card.pack-featured {
-        transform: scale(1);
-      }
-
-      .pack-card.pack-featured:hover {
-        transform: translateY(-5px);
-      }
-
-      .gallery-grid {
-        columns: 1;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .gform-alt-btns {
-        flex-direction: column;
-      }
-
-      .contact-info {
-        padding: 0;
-      }
-
-      .process-wrapper {
-        flex-direction: column;
-        gap: 2rem;
-      }
-
-      .process-step {
-        width: 100%;
-      }
-    }
+    /* REMOVED DUPLICATE MOBILE QUERY - Consolidated below */
 
     /* SMALL MOBILE (max-width: 480px) */
     @media (max-width: 480px) {
@@ -1648,18 +1584,16 @@
         height: 70px !important;
         justify-content: space-between !important;
         background: #12061c !important;
-        /* Solid background on mobile to prevent bleed */
         top: 0 !important;
       }
 
       .nav-logo {
-        font-size: 1.15rem !important;
-        max-width: 170px !important;
+        font-size: 1.1rem !important;
+        max-width: 160px !important;
         white-space: normal !important;
         line-height: 1.1 !important;
       }
 
-      /* SPECIFICALLY HIDE the header CTA on mobile */
       nav>.nav-cta {
         display: none !important;
       }
@@ -1671,14 +1605,14 @@
 
       .nav-links {
         position: absolute !important;
-        top: 70px !important;
+        top: 69px !important;
+        /* Slight overlap to prevent gap */
         left: 0 !important;
         right: 0 !important;
-        bottom: auto !important;
         width: 100% !important;
         background: #1a0630 !important;
         flex-direction: column !important;
-        padding: 2.5rem 1rem !important;
+        padding: 2rem 1rem !important;
         display: none;
         border-top: 1px solid rgba(255, 215, 120, 0.1) !important;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6) !important;
@@ -1686,7 +1620,7 @@
       }
 
       .nav-links li {
-        margin: 1rem 0 !important;
+        margin: 0.8rem 0 !important;
         text-align: center !important;
       }
 
@@ -1694,7 +1628,6 @@
         display: flex !important;
       }
 
-      /* Ensure mobile-only elements show up */
       .mobile-only {
         display: block !important;
       }
@@ -1710,11 +1643,28 @@
         font-weight: 600 !important;
       }
 
-      /* Fix White Space below header */
+      /* Section Adjustments */
+      section {
+        padding: 4rem 5% !important;
+      }
+
       .hero {
         margin-top: 0 !important;
         padding-top: 100px !important;
-        /* Compensate for fixed header */
+      }
+
+      .hero h1 {
+        font-size: clamp(2.3rem, 8vw, 3rem) !important;
+      }
+
+      .services-grid,
+      .pack-grid {
+        grid-template-columns: 1fr !important;
+        max-width: 100% !important;
+      }
+
+      .gallery-item {
+        flex: 0 0 100% !important;
       }
     }
 
@@ -2115,7 +2065,11 @@
           <div class="gallery-item"><img src="images/1.jpg" alt="Artist Portrait" /></div>
         </div>
       </div>
-      <button class="gallery-nav-btn next" id="gallery-next">⟩</button>
+    </div>
+    <div class="gallery-footer reveal" style="text-align: center; margin-top: 3rem;">
+      <h2 class="section-title" style="margin-bottom: 1.5rem;">For More visit our instagram page</h2>
+      <a href="https://www.instagram.com/lams_bridal___beauty_look_svks?igsh=MW5tNXE2eHhrYXZvMw==" target="_blank"
+        class="nav-cta">Instagram</a>
     </div>
   </section>
 
